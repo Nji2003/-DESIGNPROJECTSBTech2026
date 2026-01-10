@@ -1,0 +1,2 @@
+# DESIGNPROJECT2026
+2026 Academy projects LMUI
