@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce - Wholesale Marketplace</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Top Navigation -->
+    <div class="top-nav">
+        <div class="container">
+            <div class="top-nav-left">
+                <a href="#">Sell on E-Commerce</a>
+                <a href="#">Help Center</a>
+                <a href="#" class="download-app"><i class="fas fa-mobile-alt"></i> Download App</a>
+            </div>
+            <div class="top-nav-right">
+                <a href="#"><i class="fas fa-user"></i> Sign In / Join Free</a>
+                <a href="#" id="cart-icon"><i class="fas fa-shopping-cart"></i> Cart (<span id="cart-count">0</span>)</a>
+                <select id="language-select">
+                    <option>English</option>
+                    <option>Français</option>
+                </select>
+                <span class="currency">FCFA</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <h1><span class="logo-orange">E</span>-<span class="logo-red">Commerce</span></h1>
+                <p class="tagline">Africa's Digital Marketplace</p>
+            </div>
+            
+            <div class="search-bar">
+                <div class="search-category">
+                    <select id="category-select">
+                        <option>All Categories</option>
+                        <option value="electronics">Electronics</option>
+                        <option value="fashion">Fashion</option>
+                        <option value="home">Home & Garden</option>
+                        <option value="beauty">Beauty & Health</option>
+                        <option value="machinery">Machinery</option>
+                        <option value="agriculture">Agriculture</option>
+                    </select>
+                </div>
+                <input type="text" id="search-input" placeholder="Search for products, suppliers, categories...">
+                <button id="search-btn"><i class="fas fa-search"></i> Search</button>
+            </div>
+            
+            <div class="header-actions">
+                <a href="#" class="suppliers-btn"><i class="fas fa-users"></i> Find Suppliers</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Navigation -->
+    <nav class="main-nav">
+        <div class="container">
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#"><i class="fas fa-box"></i> Ready to Ship</a></li>
+                <li><a href="#"><i class="fas fa-gem"></i> Premium</a></li>
+                <li><a href="#"><i class="fas fa-industry"></i> Trade Shows</a></li>
+                <li><a href="#"><i class="fas fa-star"></i> Buyer Central</a></li>
+                <li><a href="#"><i class="fas fa-chart-line"></i> Trending Now</a></li>
+                <li><a href="#"><i class="fas fa-truck"></i> Logistics</a></li>
+                <li><a href="#"><i class="fas fa-question-circle"></i> Services</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Banner -->
+    <section class="hero-banner">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Source from Africa's Largest Marketplace</h2>
+                <p>Find quality manufacturers, suppliers, exporters, and importers</p>
+                <div class="hero-search">
+                    <input type="text" placeholder="What are you looking for today?">
+                    <button>Search</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories">
+        <div class="container">
+            <h2 class="section-title">Popular Categories</h2>
+            <div class="categories-grid">
+                <a href="category.html?cat=electronics" class="category-card">
+                    <div class="category-icon electronics">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <h3>Electronics</h3>
+                </a>
+                <a href="category.html?cat=fashion" class="category-card">
+                    <div class="category-icon fashion">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <h3>Fashion</h3>
+                </a>
+                <a href="category.html?cat=home" class="category-card">
+                    <div class="category-icon home">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>Home & Garden</h3>
+                </a>
+                <a href="category.html?cat=beauty" class="category-card">
+                    <div class="category-icon beauty">
+                        <i class="fas fa-spa"></i>
+                    </div>
+                    <h3>Beauty & Health</h3>
+                </a>
+                <a href="category.html?cat=machinery" class="category-card">
+                    <div class="category-icon machinery">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>Machinery</h3>
+                </a>
+                <a href="category.html?cat=agriculture" class="category-card">
+                    <div class="category-icon agriculture">
+                        <i class="fas fa-tractor"></i>
+                    </div>
+                    <h3>Agriculture</h3>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="featured-products">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Featured Products</h2>
+                <a href="#" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
+            </div>
+            
+            <div class="products-grid" id="products-container">
+                <!-- Products will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Shopping Cart Modal -->
+    <div class="cart-modal" id="cart-modal">
+        <div class="cart-modal-content">
+            <div class="cart-modal-header">
+                <h3>Shopping Cart (<span id="modal-cart-count">0</span>)</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="cart-items" id="cart-items">
+                <!-- Cart items will be loaded here -->
+                <div class="empty-cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <p>Your cart is empty</p>
+                </div>
+            </div>
+            <div class="cart-total">
+                <p>Total: <span id="cart-total-price">0 FCFA</span></p>
+                <button class="checkout-btn">Proceed to Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>E-Commerce</h3>
+                    <p>Africa's leading B2B marketplace connecting global buyers with African suppliers.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Buy on E-Commerce</h4>
+                    <ul>
+                        <li><a href="#">How to Buy</a></li>
+                        <li><a href="#">Payment Methods</a></li>
+                        <li><a href="#">Shipping & Delivery</a></li>
+                        <li><a href="#">Buyer Protection</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Sell on E-Commerce</h4>
+                    <ul>
+                        <li><a href="#">How to Sell</a></li>
+                        <li><a href="#">Seller Membership</a></li>
+                        <li><a href="#">Seller Protection</a></li>
+                        <li><a href="#">Trade Assurance</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> +237 123 456 789</li>
+                        <li><i class="fas fa-envelope"></i> support@ecommerce.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Douala, Cameroon</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 E-Commerce. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a></p>
+                <p class="currency-note">All prices are in FCFA (Central African CFA franc)</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Add the JavaScript directly in the HTML -->
+    <script>
+        // PRODUCT DATA - This will show products IMMEDIATELY
+        const products = [
+            {
+                id: 1,
+                name: "Wireless Bluetooth Headphones",
+                description: "High-quality wireless headphones with noise cancellation",
+                price: 12500,
+                image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+                category: "electronics",
+                minOrder: "10 pieces",
+                supplier: "AudioTech Ltd"
+            },
+            {
+                id: 2,
+                name: "African Print Fabric (Wax)",
+                description: "Authentic African wax print fabric, 100% cotton",
+                price: 8500,
+                image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+                category: "fashion",
+                minOrder: "50 yards",
+                supplier: "Textile Africa"
+            },
+            {
+                id: 3,
+                name: "Smartphone Android 12",
+                description: "Latest Android smartphone with 128GB storage, 8GB RAM",
+                price: 89500,
+                image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+                category: "electronics",
+                minOrder: "5 pieces",
+                supplier: "Mobile World"
+            },
+            {
+                id: 4,
+                name: "Shea Butter (Raw, Unrefined)",
+                description: "100% pure organic shea butter for skin and hair care",
+                price: 6500,
+                image: "https://images.unsplash.com/photo-1594736797933-d0e64d3b1d4d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+                category: "beauty",
+                minOrder: "20 kg",
+                supplier: "Natural Beauty"
+            },
+            {
+                id: 5,
+                name: "Portable Solar Power Bank",
+                description: "20000mAh solar charger with dual USB ports",
+                price: 18500,
+                image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+                category: "electronics",
+                minOrder: "10 pieces",
+                supplier: "Green Energy"
+            },
+            {
+                id: 6,
+                name: "African Handcrafted Jewelry",
+                description: "Beautiful handmade jewelry set with traditional beads",
+                price: 12500,
+                image: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+                category: "fashion",
+                minOrder: "25 sets",
+                supplier: "Artisan Crafts"
+            },
+            {
+                id: 7,
+                name: "Industrial Blender 5L",
+                description: "Commercial grade blender for restaurants",
+                price: 45000,
+                image: "https://images.unsplash.com/photo-1553531384-397c80973a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+                category: "home",
+                minOrder: "2 pieces",
+                supplier: "Kitchen Equipment"
+            },
+            {
+                id: 8,
+                name: "Traditional African Masks",
+                description: "Authentic hand-carved wooden masks",
+                price: 25000,
+                image: "https://images.unsplash.com/photo-1574323347402-f3e8d9171518?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+                category: "home",
+                minOrder: "10 pieces",
+                supplier: "Cultural Heritage"
+            }
+        ];
+
+        // Shopping Cart
+        let cart = [];
+
+        // Format price in FCFA
+        function formatPrice(price) {
+            return price.toLocaleString('fr-FR') + ' FCFA';
+        }
+
+        // Load products on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadProducts();
+            updateCartCount();
+            
+            // Load cart from localStorage
+            const savedCart = localStorage.getItem('ecommerce_cart');
+            if (savedCart) {
+                cart = JSON.parse(savedCart);
+                updateCart();
+            }
+        });
+
+        // Load products to the page
+        function loadProducts() {
+            const productsContainer = document.getElementById('products-container');
+            if (!productsContainer) return;
+            
+            productsContainer.innerHTML = '';
+            
+            products.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                    <div class="product-image">
+                        <img src="${product.image}" alt="${product.name}">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">${product.name}</h3>
+                        <p class="product-description">${product.description}</p>
+                        <div class="product-price">${formatPrice(product.price)}</div>
+                        <div class="product-meta">
+                            <span class="min-order">Min. Order: ${product.minOrder}</span>
+                            <span class="supplier">${product.supplier}</span>
+                        </div>
+                        <button class="add-to-cart-btn" data-id="${product.id}">
+                            <i class="fas fa-cart-plus"></i> Add to Cart
+                        </button>
+                    </div>
+                `;
+                productsContainer.appendChild(productCard);
+            });
+            
+            // Add event listeners to Add to Cart buttons
+            document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productId = parseInt(this.getAttribute('data-id'));
+                    addToCart(productId);
+                });
+            });
+        }
+
+        // Add product to cart
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+            
+            // Check if product already in cart
+            const existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    ...product,
+                    quantity: 1
+                });
+            }
+            
+            // Update cart UI
+            updateCart();
+            
+            // Show confirmation
+            const button = document.querySelector(`.add-to-cart-btn[data-id="${productId}"]`);
+            const originalText = button.innerHTML;
+            button.innerHTML = '<i class="fas fa-check"></i> Added to Cart';
+            button.classList.add('added');
+            
+            setTimeout(() => {
+                button.innerHTML = originalText;
+                button.classList.remove('added');
+            }, 2000);
+            
+            // Save cart to localStorage
+            saveCartToLocalStorage();
+        }
+
+        // Update cart display
+        function updateCart() {
+            const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+            const cartTotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+            
+            // Update cart count
+            document.querySelectorAll('#cart-count, #modal-cart-count').forEach(element => {
+                element.textContent = cartCount;
+            });
+            
+            // Update cart total
+            const cartTotalPrice = document.getElementById('cart-total-price');
+            if (cartTotalPrice) {
+                cartTotalPrice.textContent = formatPrice(cartTotal);
+            }
+            
+            // Update cart items
+            renderCartItems();
+        }
+
+        // Update cart count only
+        function updateCartCount() {
+            const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+            document.querySelectorAll('#cart-count, #modal-cart-count').forEach(element => {
+                element.textContent = cartCount;
+            });
+        }
+
+        // Render cart items
+        function renderCartItems() {
+            const cartItemsContainer = document.getElementById('cart-items');
+            if (!cartItemsContainer) return;
+            
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = `
+                    <div class="empty-cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        <p>Your cart is empty</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            cartItemsContainer.innerHTML = '';
+            
+            cart.forEach(item => {
+                const cartItem = document.createElement('div');
+                cartItem.className = 'cart-item';
+                cartItem.innerHTML = `
+                    <div class="cart-item-image">
+                        <img src="${item.image}" alt="${item.name}">
+                    </div>
+                    <div class="cart-item-details">
+                        <div class="cart-item-title">${item.name}</div>
+                        <div class="cart-item-price">${formatPrice(item.price)}</div>
+                        <div class="cart-item-quantity">
+                            <button class="quantity-btn minus" data-id="${item.id}">-</button>
+                            <input type="number" class="quantity-input" value="${item.quantity}" min="1" data-id="${item.id}">
+                            <button class="quantity-btn plus" data-id="${item.id}">+</button>
+                            <button class="remove-item" data-id="${item.id}"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                `;
+                cartItemsContainer.appendChild(cartItem);
+            });
+            
+            // Add event listeners to cart controls
+            cartItemsContainer.querySelectorAll('.quantity-btn.minus').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const id = parseInt(this.getAttribute('data-id'));
+                    updateCartItemQuantity(id, -1);
+                });
+            });
+            
+            cartItemsContainer.querySelectorAll('.quantity-btn.plus').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const id = parseInt(this.getAttribute('data-id'));
+                    updateCartItemQuantity(id, 1);
+                });
+            });
+            
+            cartItemsContainer.querySelectorAll('.remove-item').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const id = parseInt(this.getAttribute('data-id'));
+                    removeFromCart(id);
+                });
+            });
+        }
+
+        // Update cart item quantity
+        function updateCartItemQuantity(productId, change) {
+            const item = cart.find(item => item.id === productId);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity < 1) {
+                    item.quantity = 1;
+                }
+                updateCart();
+                saveCartToLocalStorage();
+            }
+        }
+
+        // Remove item from cart
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCart();
+            saveCartToLocalStorage();
+        }
+
+        // Save cart to localStorage
+        function saveCartToLocalStorage() {
+            localStorage.setItem('ecommerce_cart', JSON.stringify(cart));
+        }
+
+        // Cart icon click handler
+        document.getElementById('cart-icon')?.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('cart-modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        // Close modal handler
+        document.querySelector('.close-modal')?.addEventListener('click', function() {
+            document.getElementById('cart-modal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        // Search functionality
+        document.getElementById('search-btn')?.addEventListener('click', function() {
+            const query = document.getElementById('search-input').value.toLowerCase();
+            filterProducts(query);
+        });
+
+        // Filter products by search
+        function filterProducts(query) {
+            const productsContainer = document.getElementById('products-container');
+            if (!productsContainer) return;
+            
+            const filteredProducts = products.filter(product => 
+                product.name.toLowerCase().includes(query) ||
+                product.description.toLowerCase().includes(query) ||
+                product.category.toLowerCase().includes(query)
+            );
+            
+            productsContainer.innerHTML = '';
+            
+            if (filteredProducts.length === 0) {
+                productsContainer.innerHTML = '<p class="no-results">No products found</p>';
+                return;
+            }
+            
+            filteredProducts.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                    <div class="product-image">
+                        <img src="${product.image}" alt="${product.name}">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">${product.name}</h3>
+                        <p class="product-description">${product.description}</p>
+                        <div class="product-price">${formatPrice(product.price)}</div>
+                        <div class="product-meta">
+                            <span class="min-order">Min. Order: ${product.minOrder}</span>
+                            <span class="supplier">${product.supplier}</span>
+                        </div>
+                        <button class="add-to-cart-btn" data-id="${product.id}">
+                            <i class="fas fa-cart-plus"></i> Add to Cart
+                        </button>
+                    </div>
+                `;
+                productsContainer.appendChild(productCard);
+            });
+            
+            // Re-attach event listeners
+            document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productId = parseInt(this.getAttribute('data-id'));
+                    addToCart(productId);
+                });
+            });
+        }
+    </script>
+</body>
+</html>
