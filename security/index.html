@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Flagged IPs</title>
+  <style>
+    /* Basic table styling for readability */
+    body { font-family: Arial, sans-serif; }
+    .container { max-width: 900px; margin: 40px auto; padding: 0 16px; }
+    h1 { text-align: center; }
+    table { border-collapse: collapse; width: 100%; margin-top: 16px; }
+    th, td { border: 1px solid #333; padding: 8px; text-align: center; }
+    th { background-color: #f2f2f2; }
+    caption { caption-side: top; font-weight: bold; margin-bottom: 8px; }
+    .status-ok { color: #116611; font-weight: bold; }
+    .status-flagged { color: #aa0000; font-weight: bold; }
+    .error { color: #aa0000; margin-top: 12px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Flagged IPs</h1>
+
+    <!-- Table structure; rows will be injected by JavaScript -->
+    <table id="ipTable">
+      <caption>Login attempts by IP</caption>
+      <thead>
+        <tr>
+          <th>IP Address</th>
+          <th>Attempt Count</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <!-- Area to show any loading or fetch errors -->
+    <div id="error" class="error" aria-live="polite"></div>
+  </div>
+
+  <script>
+    // Note: Browsers block fetch() from local files when opened via file://
+    // To avoid this, run a local server (see instructions below).
+    // This script fetches flagged_ips.json, then renders rows in the table.
+
+    async function loadFlaggedIPs() {
+      const errorEl = document.getElementById('error');
+      const tbody = document.querySelector('#ipTable tbody');
+
+      try {
+        const response = await fetch('flagged_ips.json', { cache: 'no-store' });
+        if (!response.ok) {
+          throw new Error(`Failed to load JSON (status ${response.status})`);
+        }
+        const data = await response.json();
+
+        // Validate basic structure before rendering
+        if (!Array.isArray(data)) {
+          throw new Error('JSON root must be an array of entries');
+        }
+
+        // Clear existing rows
+        tbody.innerHTML = '';
+
+        // Render each entry into a table row
+        data.forEach((item) => {
+          // Fallbacks and simple validation
+          const ip = item.ip ?? '';
+          const attempts = Number.isInteger(item.attempts) ? item.attempts : 0;
+
+          // If status is missing, derive it from attempts rule (>=5 => flagged)
+          const status = item.status ?? (attempts >= 5 ? 'flagged' : 'ok');
+          const statusClass = status === 'flagged' ? 'status-flagged' : 'status-ok';
+
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td>${ip}</td>
+            <td>${attempts}</td>
+            <td class="${statusClass}">${status}</td>
+          `;
+          tbody.appendChild(tr);
+        });
+      } catch (err) {
+        errorEl.textContent = `Error: ${err.message}`;
+      }
+    }
+
+    // Kick off loading once the page is ready
+    document.addEventListener('DOMContentLoaded', loadFlaggedIPs);
+  </script>
+</body>
+</html>

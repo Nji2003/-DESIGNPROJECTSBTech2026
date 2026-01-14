@@ -1,0 +1,7 @@
+[
+  { "ip": "192.168.0.10", "attempts": 2, "status": "ok" },
+  { "ip": "203.0.113.5",  "attempts": 7, "status": "flagged" },
+  { "ip": "198.51.100.23","attempts": 5, "status": "flagged" },
+  { "ip": "10.0.0.8",     "attempts": 1, "status": "ok" },
+  { "ip": "172.16.4.14",  "attempts": 9, "status": "flagged" }
+]
